@@ -1,3 +1,11 @@
+# ROS2 toolchain cross-compiler
+
+This is a very minimal pass at a workflow that can use a custom toolchain to create a ROS2 build.
+
+It cannot handle dependencies that are outside the source tree, so there is only a limited subset of ROS2 that this can build.
+
+As of right now, it is specifically tuned to using a linaro aarch64 cross compiler, but to make it generic should not take much modification.
+
 # Main Process
 
 ## Setup

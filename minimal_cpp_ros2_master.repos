@@ -19,13 +19,29 @@ repositories:
     type: git
     url: https://gitlab.com/micro-ROS/ros_tracing/ros2_tracing.git
     version: 0.2.10
+  ros/class_loader:
+    type: git
+    url: https://github.com/ros/class_loader.git
+    version: ros2
   ros2/ament_cmake_ros:
     type: git
     url: https://github.com/ros2/ament_cmake_ros.git
     version: master
+  ros2/common_interfaces:
+    type: git
+    url: https://github.com/ros2/common_interfaces.git
+    version: master
+  ros2/console_bridge_vendor:
+    type: git
+    url: https://github.com/ros2/console_bridge_vendor.git
+    version: master
   ros2/demos:
     type: git
     url: https://github.com/ros2/demos.git
+    version: master
+  ros2/example_interfaces:
+    type: git
+    url: https://github.com/ros2/example_interfaces.git
     version: master
   ros2/libyaml_vendor:
     type: git
@@ -98,21 +114,4 @@ repositories:
   ros2/unique_identifier_msgs:
     type: git
     url: https://github.com/ros2/unique_identifier_msgs.git
-    version: master
-
-  ros/class_loader:
-    type: git
-    url: https://github.com/ros/class_loader.git
-    version: ros2
-  ros2/console_bridge_vendor:
-    type: git
-    url: https://github.com/ros2/console_bridge_vendor.git
-    version: master
-  ros2/example_interfaces:
-    type: git
-    url: https://github.com/ros2/example_interfaces.git
-    version: master
-  ros2/common_interfaces:
-    type: git
-    url: https://github.com/ros2/common_interfaces.git
     version: master
