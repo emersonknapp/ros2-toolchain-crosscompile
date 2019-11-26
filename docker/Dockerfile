@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install -y \
     cmake \
     git \
     python3-colcon-common-extensions \
+    python3-lark-parser \
     python3-pip \
     wget \
   && rm -rf /var/lib/apt/lists/*
@@ -30,20 +31,20 @@ RUN apt-get update && apt-get install -y \
 RUN python3 -m pip install -U colcon-mixin
 
 # Create the workspace
-RUN mkdir /ws
-WORKDIR /ws
-RUN mkdir src
+RUN mkdir -p /ws/ros2build
 
 # Add toolchain and mixins for compile arguments
-COPY cc-mixin-index.yaml .
-COPY cross-compile.mixin .
-COPY linaro-toolchain.cmake .
+COPY cc-mixin-index.yaml /ws/
+COPY cross-compile.mixin /ws/
+COPY linaro-toolchain.cmake /ws/
+
+WORKDIR /ws/ros2build
 
 RUN colcon mixin add cc file:///ws/cc-mixin-index.yaml
 RUN colcon mixin update cc
 
 ENV TARGET_ARCH=aarch64
-ENV CROSS_COMPILE=/ws/gcc-linaro-aarch64/bin/aarch64-linux-gnu-
-ENV SYSROOT=/ws/sysroot-linaro6.5
-ENV ROS2_INSTALL_PATH=/ws/install
+ENV CROSS_COMPILE=/ws/ros2build/gcc-linaro-aarch64/bin/aarch64-linux-gnu-
+ENV SYSROOT=/ws/ros2build/sysroot-linaro6.5
+ENV ROS2_INSTALL_PATH=/ws/ros2build/install
 ENV PYTHON_SOABI=cpython-36m-aarch64-linux-gnu
