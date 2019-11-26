@@ -2,13 +2,11 @@ build:
     aarch64-linux:
         cmake-args:
             - "-DCMAKE_VERBOSE_MAKEFILE:BOOL=ON"
-            - "-DCMAKE_TOOLCHAIN_FILE=/root/ros/trifo-toolchain.cmake"
+            - "-DCMAKE_TOOLCHAIN_FILE=/ws/linaro-toolchain.cmake"
             - "-DSECURITY=OFF"
             - "-DBUILD_TESTING=OFF"
             - "-DINSTALL_EXAMPLES=OFF"
             - "-DRMW_IMPLEMENTATION=rmw_cyclonedds_cpp"
             - "--no-warn-unused-cli"
-        # cmake-clean-cache: true,
-        # cmake-clean-first: true,
         cmake-force-configure: true
         merge-install: true
