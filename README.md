@@ -19,7 +19,12 @@ You need to have Docker and `vcs` installed on your dev computer already
     *  https://releases.linaro.org/components/toolchain/binaries/6.5-2018.12/aarch64-linux-gnu/sysroot-glibc-linaro-2.23-2018.12-aarch64-linux-gnu.tar.xz
     *  extract it fully into this repo and change the directory's name to `sysroot-linaro6.5`
 1. Get the ROS2 sources
-    * `vcs import src < minimal_cpp_ros2_master.repos`
+
+```
+vcs import src < minimal_cpp_ros2_master.repos
+# we do not have log4cxx dependency and don't actually need it
+touch src/ros2/rcl_logging/rcl_logging_log4cxx/COLCON_IGNORE
+```
 
 ## Running the build
 
