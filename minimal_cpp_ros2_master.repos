@@ -127,4 +127,4 @@ repositories:
   aws/utils-common:
     type: git
     url: https://github.com/aws-robotics/utils-common.git
-    version: master
+    version: emersonknapp/cross-compile

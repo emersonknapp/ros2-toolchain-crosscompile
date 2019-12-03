@@ -6,7 +6,6 @@ if("$ENV{TARGET_ARCH}" STREQUAL "" OR
     message(FATAL_ERROR "Target environment variables not defined")
 endif()
 
-set(TARGET_ARCH $ENV{TARGET_ARCH})
 set(CMAKE_SYSTEM_NAME Linux)
 SET(CMAKE_SYSTEM_VERSION 1)
 set(CMAKE_SYSTEM_PROCESSOR aarch64)
