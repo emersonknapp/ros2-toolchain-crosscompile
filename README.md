@@ -76,3 +76,63 @@ If you need to change the docker image that we use for building, it's easy to re
 cd docker
 docker build . -t candleends/ros2_cross_compiler
 ```
+
+# Building and running AWS Kinesis Video Streams
+
+There are a few low level dependencies that need to cross compiled, in order to use the AWS C++ SDKs: zlib, openssl, and curl
+
+```
+docker run -it -v $(pwd):/ws/ros2build candleends/ros2_cross_compiler
+
+# build those dependencies from source
+mkdir cross_output
+mkdir cross_dependency_sources
+touch cross_dependency_sources/COLCON_IGNORE
+pushd cross_dependency_sources
+../cross-compile-deps.bash
+popd
+
+# the dependencies were installed into cross_output, install them into the sysroot so that the build can find them
+cp -RT cross_output/ sysroot-linaro6.5/
+```
+
+Now, you can perform the cross-compilation build of the ros2 stack
+
+```
+colcon build --mixin aarch64-linux --packages-up-to kinesis-test
+```
+
+## Configuring credentials on the device
+1. You need CA Certificates for curl to use for HTTPS.
+
+```
+# WARNING: don't do this in production! this is just to get the same certs as your dev machine available on the device
+adb push /etc/ssl/certs /etc/ssl
+```
+
+2. you also need AWS credentials for your app to access AWS services. Set the contents of `/.aws/credentials` on the device
+
+```
+[default]
+aws_access_key_id = YOUR_AWS_ACCESS_KEY_ID
+aws_secret_access_key = YOUR_AWS_SECRET_ACCESS_KEY
+```
+
+## Deploy
+
+```
+adb push cross_output/ /userdata/
+adb push install /userdata/
+```
+
+on the device
+```
+cp -r /userdata/cross_output/. /
+export LD_LIBRARY_PATH=/userdata/install/lib/
+```
+
+## Try it out
+
+```
+/userdata/install/lib/kinesis
+```

@@ -128,3 +128,7 @@ repositories:
     type: git
     url: https://github.com/aws-robotics/utils-common.git
     version: emersonknapp/cross-compile
+  aws/kinesis_sdk_ros2_example:
+    type: git
+    url: https://github.com/emersonknapp/kinesis_sdk_ros2_example.git
+    version: master
