@@ -34,14 +34,14 @@ pushd openssl-1.1.1c
 ./Configure --prefix=$CROSS_INSTALL_PREFIX linux-aarch64
 # Note: I don't quite understand why it messes up the prefixes on the build tools
 make CC=$CC LD=$LD AR=$AR AS=$AS NM=$NM RANLIB=$RANLIB -j
-make install CC=$CC LD=$LD AR=$AR AS=$AS NM=$NM RANLIB=$RANLIB
+make install_sw CC=$CC LD=$LD AR=$AR AS=$AS NM=$NM RANLIB=$RANLIB
 popd
 
 # curl
 wget -c https://curl.haxx.se/download/curl-7.65.1.tar.gz
 tar xvzf curl-7.65.1.tar.gz
 pushd curl-7.65.1
-./configure --prefix=$CROSS_INSTALL_PREFIX --host=aarch64-linux 
+./configure --prefix=$CROSS_INSTALL_PREFIX --host=aarch64-linux --with-ssl --with-zlib --with-ca-path=/etc/ssl/certs --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
 make -j
 make install
 popd
