@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y \
     python3-lark-parser \
     python3-pip \
     wget \
+    tree \
     pkg-config \
   && rm -rf /var/lib/apt/lists/*
 

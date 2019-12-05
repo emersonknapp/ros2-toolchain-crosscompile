@@ -116,6 +116,9 @@ repositories:
     url: https://github.com/ros2/unique_identifier_msgs.git
     version: eloquent
 
+  # above this line needed for demo nodes CPP, core behavior
+  # below is the additional needed for the kinesis video streaming demo
+
   aws/kinesisvideo-ros2:
     type: git
     url: https://github.com/aws-robotics/kinesisvideo-ros2.git
@@ -132,3 +135,27 @@ repositories:
     type: git
     url: https://github.com/emersonknapp/kinesis_sdk_ros2_example.git
     version: master
+  aws/utils-ros2:
+    type: git
+    url: git@github.com:aws-robotics/utils-ros2.git
+    version: master
+  ros-perception/image_common:
+    type: git
+    url: https://github.com/ros-perception/image_common
+    version: ros2
+  ros2/message_filters:
+    type: git
+    url: https://github.com/ros2/message_filters
+    version: eloquent
+  ros2/python_cmake_module:
+    type: git
+    url: https://github.com/ros2/python_cmake_module
+    version: eloquent
+  ros/pluginlib:
+    type: git
+    url: https://github.com/ros/pluginlib
+    version: eloquent
+  ros2/tinyxml2_vendor:
+    type: git
+    url: https://github.com/ros2/tinyxml2_vendor
+    version: eloquent
