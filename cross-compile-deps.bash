@@ -21,33 +21,33 @@ export CXXFLAGS="--sysroot $CROSS_COMPILE_SYSROOT"
 export CPPFLAGS="--sysroot $CROSS_COMPILE_SYSROOT"
 export LDFLAGS="--sysroot $CROSS_COMPILE_SYSROOT"
 
-# # Zlib
-# wget -c https://zlib.net/zlib-1.2.11.tar.gz
-# tar xzf zlib-1.2.11.tar.gz
-# pushd zlib-1.2.11
-# ./configure --prefix=$CROSS_INSTALL_PREFIX
-# make -j
-# make install
-# popd
-#
-# # openssl
-# wget -c https://www.openssl.org/source/openssl-1.1.1c.tar.gz
-# tar xzf openssl-1.1.1c.tar.gz
-# pushd openssl-1.1.1c
-# ./Configure --prefix=$CROSS_INSTALL_PREFIX linux-aarch64
-# # Note: I don't quite understand why it messes up the prefixes on the build tools
-# make CC=$CC LD=$LD AR=$AR AS=$AS NM=$NM RANLIB=$RANLIB -j
-# make install_sw CC=$CC LD=$LD AR=$AR AS=$AS NM=$NM RANLIB=$RANLIB
-# popd
-#
-# # curl
-# wget -c https://curl.haxx.se/download/curl-7.65.1.tar.gz
-# tar xzf curl-7.65.1.tar.gz
-# pushd curl-7.65.1
-# ./configure --prefix=$CROSS_INSTALL_PREFIX --host=aarch64-linux --with-zlib --with-ca-path=/etc/ssl/certs --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
-# make -j
-# make install
-# popd
+# Zlib
+wget -c https://zlib.net/zlib-1.2.11.tar.gz
+tar xzf zlib-1.2.11.tar.gz
+pushd zlib-1.2.11
+./configure --prefix=$CROSS_INSTALL_PREFIX
+make -j
+make install
+popd
+
+# openssl
+wget -c https://www.openssl.org/source/openssl-1.1.1c.tar.gz
+tar xzf openssl-1.1.1c.tar.gz
+pushd openssl-1.1.1c
+./Configure --prefix=$CROSS_INSTALL_PREFIX linux-aarch64
+# Note: I don't quite understand why it messes up the prefixes on the build tools
+make CC=$CC LD=$LD AR=$AR AS=$AS NM=$NM RANLIB=$RANLIB -j
+make install_sw CC=$CC LD=$LD AR=$AR AS=$AS NM=$NM RANLIB=$RANLIB
+popd
+
+# curl
+wget -c https://curl.haxx.se/download/curl-7.65.1.tar.gz
+tar xzf curl-7.65.1.tar.gz
+pushd curl-7.65.1
+./configure --prefix=$CROSS_INSTALL_PREFIX --host=aarch64-linux --with-zlib --with-ca-path=/etc/ssl/certs --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
+make -j
+make install
+popd
 
 ## dependencies for kinesis video producer
 
@@ -57,7 +57,7 @@ tar xzf log4cplus-1.1.2.tar.gz
 pushd log4cplus-1.1.2
 ./configure --prefix=$CROSS_INSTALL_PREFIX --host=aarch64-linux --with-sysroot=$CROSS_COMPILE_SYSROOT
 make -j
-# make install
+make install
 popd
 
 # libgstreamer1.0-dev

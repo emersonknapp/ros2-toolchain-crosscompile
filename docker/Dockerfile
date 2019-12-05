@@ -48,3 +48,5 @@ ENV CROSS_COMPILE=/ws/ros2build/gcc-linaro-aarch64/bin/aarch64-linux-gnu-
 ENV SYSROOT=/ws/ros2build/sysroot-linaro6.5
 ENV ROS2_INSTALL_PATH=/ws/ros2build/install
 ENV PYTHON_SOABI=cpython-36m-aarch64-linux-gnu
+ENV ROS_DISTRO=eloquent
+ENV ROS_VERSION=2
