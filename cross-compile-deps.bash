@@ -60,6 +60,9 @@ make -j
 make install
 popd
 
+# TODO(EKNAPP) - the headers maybe should get installed to $SYSROOT/usr/include/ or the compiler fixed? It doesn't look in the right place by default
+
+
 # libgstreamer1.0-dev
 # wget -O gstreamer-1.15.90.tar.gz https://github.com/GStreamer/gstreamer/archive/1.15.90.tar.gz
 # tar xzf gstreamer-1.15.90.tar.gz
