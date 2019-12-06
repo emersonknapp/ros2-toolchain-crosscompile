@@ -122,7 +122,7 @@ repositories:
   aws/kinesisvideo-ros2:
     type: git
     url: https://github.com/aws-robotics/kinesisvideo-ros2.git
-    version: master
+    version: emersonknapp/eloquent
   aws/kinesisvideo-common:
     type: git
     url: https://github.com/aws-robotics/kinesisvideo-common.git
@@ -159,3 +159,9 @@ repositories:
     type: git
     url: https://github.com/ros2/tinyxml2_vendor
     version: eloquent
+
+  # this is custom video image publisher that provides data to the kinesis streamer
+  video-node:
+    type: git
+    url: git@github.com:emersonknapp/test-videonode
+    version: master
