@@ -139,6 +139,14 @@ repositories:
     type: git
     url: git@github.com:aws-robotics/utils-ros2.git
     version: master
+  aws/kinesisvideo-encoder-ros2:
+    type: git
+    url: git@github.com:aws-robotics/kinesisvideo-encoder-ros2
+    version: master
+  aws/kinesisvideo-encoder-common:
+    type: git
+    url: git@github.com:aws-robotics/kinesisvideo-encoder-common
+    version: master
   ros-perception/image_common:
     type: git
     url: https://github.com/ros-perception/image_common

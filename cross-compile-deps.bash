@@ -1,4 +1,6 @@
 #!/bin/bash -ex
+# This interferes with some of the below builds so make sure it's not set
+unset TARGET_ARCH
 
 export WS=/ws/ros2build
 export CROSS_COMPILER_DIR=$WS/gcc-linaro-aarch64
@@ -27,6 +29,8 @@ BUILD_CURL=1
 BUILD_LOG=1
 BUILD_XML=1
 
+touch COLCON_IGNORE
+
 # Zlib
 if [ $BUILD_ZLIB = 1 ]; then
 wget -c https://zlib.net/zlib-1.2.11.tar.gz
@@ -44,7 +48,7 @@ if [ $BUILD_SSL = 1 ]; then
 wget -c https://www.openssl.org/source/openssl-1.1.1c.tar.gz
 tar xzf openssl-1.1.1c.tar.gz
 pushd openssl-1.1.1c
-./Configure --prefix=$CROSS_INSTALL_PREFIX linux-aarch64
+./Configure --prefix=$CROSS_INSTALL_PREFIX/usr linux-aarch64
 # Note: I don't quite understand why it messes up the prefixes on the build tools
 make CC=$CC LD=$LD AR=$AR AS=$AS NM=$NM RANLIB=$RANLIB -j
 make install_sw CC=$CC LD=$LD AR=$AR AS=$AS NM=$NM RANLIB=$RANLIB
@@ -57,7 +61,10 @@ if [ $BUILD_CURL = 1 ]; then
 wget -c https://curl.haxx.se/download/curl-7.65.1.tar.gz
 tar xzf curl-7.65.1.tar.gz
 pushd curl-7.65.1
-./configure --prefix=$CROSS_INSTALL_PREFIX --host=aarch64-linux --with-ssl --with-zlib --with-ca-path=/etc/ssl/certs --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
+./configure --prefix=$CROSS_INSTALL_PREFIX --host=aarch64-linux \
+  --with-zlib \
+  --with-ssl --with-libssl-prefix=$CROSS_INSTALL_PREFIX \
+  --with-ca-path=/etc/ssl/certs --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
 make -j
 make install
 popd
@@ -71,7 +78,7 @@ if [ $BUILD_LOG = 1 ]; then
 wget -c https://github.com/log4cplus/log4cplus/releases/download/REL_1_1_2/log4cplus-1.1.2.tar.gz
 tar xzf log4cplus-1.1.2.tar.gz
 pushd log4cplus-1.1.2
-./configure --prefix=$CROSS_INSTALL_PREFIX --host=aarch64-linux --with-sysroot=$CROSS_COMPILE_SYSROOT
+./configure --prefix=$CROSS_INSTALL_PREFIX/usr --host=aarch64-linux --with-sysroot=$CROSS_COMPILE_SYSROOT
 make -j
 make install
 popd
@@ -90,15 +97,3 @@ make install DESTDIR=$CROSS_INSTALL_PREFIX
 popd
 cp -r $CROSS_INSTALL_PREFIX/. $CROSS_COMPILE_SYSROOT
 fi
-
-# libgstreamer1.0-dev
-# wget -O gstreamer-1.15.90.tar.gz https://github.com/GStreamer/gstreamer/archive/1.15.90.tar.gz
-# tar xzf gstreamer-1.15.90.tar.gz
-# pushd gstreamer-1.15.90
-# ./autogen.sh --disable-gtk-doc
-# ./configure --prefix=$CROSS_INSTALL_PREFIX --host=aarch64-linux
-# make -j
-# popd
-
-# libgstreamer-plugins-base1.0-dev
-# wget -O gstreamer-1.15.90.tar.gz https://github.com/GStreamer/gst-plugins-base/archive/1.15.90.tar.gz
