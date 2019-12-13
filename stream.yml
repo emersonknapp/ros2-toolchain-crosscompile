@@ -1,0 +1,19 @@
+kinesis_video_streamer:
+  ros__parameters:
+    aws_client_configuration:
+      region: "us-west-2"
+      connect_timeout_ms: 9000
+      request_timeout_ms: 9000
+      max_retries: 5
+    kinesis_video:
+      stream_count: 1
+      stream0:
+        stream_name: "video-test"
+        subscription_topic: /camera/image
+        topic_type: 2
+        content_type: "video/raw"
+        codec_id: "V_UNCOMPRESSED"
+        # key_frame_fragmentation: false
+        frame_rate: 10
+        # Rather than using the input's timestamps, let the Producer SDK create timestamps as the frames arrive.
+        frame_timecodes: true
