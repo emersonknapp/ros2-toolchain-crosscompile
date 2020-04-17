@@ -137,15 +137,15 @@ repositories:
     version: master
   aws/utils-ros2:
     type: git
-    url: git@github.com:aws-robotics/utils-ros2.git
+    url: https://github.com/aws-robotics/utils-ros2.git
     version: master
   aws/kinesisvideo-encoder-ros2:
     type: git
-    url: git@github.com:aws-robotics/kinesisvideo-encoder-ros2
+    url: https://github.com/aws-robotics/kinesisvideo-encoder-ros2
     version: master
   aws/kinesisvideo-encoder-common:
     type: git
-    url: git@github.com:aws-robotics/kinesisvideo-encoder-common
+    url: https://github.com/aws-robotics/kinesisvideo-encoder-common
     version: master
   ros-perception/image_common:
     type: git
@@ -167,9 +167,3 @@ repositories:
     type: git
     url: https://github.com/ros2/tinyxml2_vendor
     version: eloquent
-
-  # this is custom video image publisher that provides data to the kinesis streamer
-  video-node:
-    type: git
-    url: git@github.com:emersonknapp/test-videonode
-    version: master

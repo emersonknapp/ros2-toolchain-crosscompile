@@ -61,7 +61,7 @@ if [ $BUILD_CURL = 1 ]; then
 wget -c https://curl.haxx.se/download/curl-7.65.1.tar.gz
 tar xzf curl-7.65.1.tar.gz
 pushd curl-7.65.1
-./configure --prefix=$CROSS_INSTALL_PREFIX --host=aarch64-linux \
+./configure --prefix=$CROSS_INSTALL_PREFIX/usr --host=aarch64-linux \
   --with-zlib \
   --with-ssl --with-libssl-prefix=$CROSS_INSTALL_PREFIX \
   --with-ca-path=/etc/ssl/certs --with-ca-bundle=/etc/ssl/certs/ca-certificates.crt
